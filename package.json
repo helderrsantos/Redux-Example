@@ -1,7 +1,7 @@
 {
   "name": "redux_example",
   "version": "1.0.0",
-  "main": "src/App.tsx",
+  "main": "./src",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
