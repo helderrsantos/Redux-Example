@@ -4,19 +4,22 @@ import {Platform, StyleSheet, Text, TextInput, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {Button} from '../../components/Button';
 import {decrement, increment} from '../../redux/reducers/counter';
+import { incrementByAmount } from '../../redux/reducers/counter';
 import { ParamList } from '../../types/navigation';
 
 
 export function Home({navigation}: NativeStackScreenProps<ParamList, 'Home'>) {
   const count = useSelector(state => state.counter.total);
+  const countAmount = useSelector(state => state.counterAmount.total);
   const dispatch = useDispatch();
   const [value, setValue] = useState(0);
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Home Screen</Text>
-      <TextInput style={styles.input} onChange={() => {}} value={'abc'} />
-      <Button title="Calcular" onPress={() => navigation.navigate('Details')} />
+      <Text style={styles.title}>Home Screen {countAmount}</Text>
+      <TextInput style={styles.input} keyboardType={'numeric'} />
+      <Button title="Calcular" onPress={()=> dispatch(incrementByAmount(2))} />
+
       <View style={{paddingVertical: 24}}>
         <Text style={styles.title}> Contador: {count}</Text>
       </View>
@@ -24,6 +27,7 @@ export function Home({navigation}: NativeStackScreenProps<ParamList, 'Home'>) {
         <Button title="Somar" onPress={() => dispatch(increment())} />
         <Button title="Diminuir" onPress={() => dispatch(decrement())} />
       </View>
+
       <View style={{paddingVertical: 24}}>
         <Text style={styles.title}> useState: {value}</Text>
       </View>

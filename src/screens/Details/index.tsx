@@ -4,12 +4,12 @@ import {useSelector} from 'react-redux';
 import {Button} from '../../components/Button';
 
 export function Details() {
-  const count = useSelector(state => state.counter.total);
+  const countAmount = useSelector(state => state.counterAmount.total);
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{count}</Text>
-      <Button title="Limpar valores" />
+      <Text style={styles.title}>{countAmount}</Text>
+      <Button onPress={() => {}} title="Limpar valores" />
     </View>
   );
 }
