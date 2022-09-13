@@ -2,7 +2,6 @@
   "expo": {
     "name": "redux_example",
     "slug": "redux_example",
-    "entryPoint" : "./src/App.tsx",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
