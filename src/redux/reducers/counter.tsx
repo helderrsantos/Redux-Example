@@ -16,26 +16,17 @@ export const counter = createSlice({
     decrement: state => {
       state.total -= 1;
     },
-  },
-});
-
-export const counterAmount = createSlice({
-  name: 'counterAmount',
-  initialState: {
-    total:0,
-  },
-  reducers:{
     incrementByAmount: (state, action) => { 
       state.total += action.payload;
     },
-  }
+    reset: state=> {
+      state.total = 0;
+    }
+  },
 });
 
-// Action creators are generated for each case reducer function
-export const {increment, decrement} = counter.actions;
 
-export const {incrementByAmount} = counterAmount.actions;
+// Action creators are generated for each case reducer function
+export const {increment, decrement, incrementByAmount, reset} = counter.actions;
 
 export const counterReducer = counter.reducer;
-
-export const counterReducerAmount = counterAmount.reducer;

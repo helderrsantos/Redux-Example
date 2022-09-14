@@ -1,15 +1,17 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {Button} from '../../components/Button';
+import { reset } from '../../redux/reducers/counter';
 
 export function Details() {
-  const countAmount = useSelector(state => state.counterAmount.total);
+  const count = useSelector(state => state.counter.total);
+  const dispatch = useDispatch();
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{countAmount}</Text>
-      <Button onPress={() => {}} title="Limpar valores" />
+      <Text style={styles.title}>{count}</Text>
+      <Button onPress={()=> dispatch(reset())} title="Limpar valores" />
     </View>
   );
 }

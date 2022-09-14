@@ -3,22 +3,26 @@ import React, {useState} from 'react';
 import {Platform, StyleSheet, Text, TextInput, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {Button} from '../../components/Button';
-import {decrement, increment} from '../../redux/reducers/counter';
-import { incrementByAmount } from '../../redux/reducers/counter';
+import {decrement, increment, incrementByAmount} from '../../redux/reducers/counter';
 import { ParamList } from '../../types/navigation';
 
 
 export function Home({navigation}: NativeStackScreenProps<ParamList, 'Home'>) {
   const count = useSelector(state => state.counter.total);
-  const countAmount = useSelector(state => state.counterAmount.total);
   const dispatch = useDispatch();
   const [value, setValue] = useState(0);
+  const [inputValue, setInputValue] = useState()
+
+  function handlePressCalcular(){
+    dispatch(incrementByAmount(Number(inputValue)));
+    navigation.navigate('Details');
+  }
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Home Screen {countAmount}</Text>
-      <TextInput style={styles.input} keyboardType={'numeric'} />
-      <Button title="Calcular" onPress={()=> dispatch(incrementByAmount(2))} />
+      <Text style={styles.title}>Home Screen</Text>
+      <TextInput style={styles.input} keyboardType={'numeric'} onChangeText={(text)=>setInputValue(text)} value={inputValue} />
+      <Button title="Calcular" onPress={handlePressCalcular} />
 
       <View style={{paddingVertical: 24}}>
         <Text style={styles.title}> Contador: {count}</Text>
